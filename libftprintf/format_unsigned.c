@@ -31,7 +31,7 @@ char		*save_prefix(t_flag flags, char *n)
 	int		len;
 
 	len = 0;
-	if ((!ft_strcmp(n, "0") && flags.type != 'o') || !flags.hash)
+	if (!ft_strcmp(n, "0") || !flags.hash)
 		return ("");
 	if (flags.type == 'o' || flags.type == 'x' || flags.type == 'X')
 		len++;

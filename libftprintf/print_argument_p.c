@@ -18,6 +18,8 @@ char			*print_argument_p(va_list deez_args, t_flag flags)
 	unsigned long	n;
 
 	n = (unsigned long)va_arg(deez_args, void *);
+	if (n == 0)
+		return ("0x0");
 	str = ft_llutoa_base(n, 16);
 	flags.hash = 1;
 	flags.type = 'x';
