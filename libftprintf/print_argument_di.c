@@ -67,7 +67,7 @@ t_signed_string	convert_type_di(va_list deez_args, t_flag flags)
 		n = ft_lltoa(va_arg(deez_args, intmax_t));
 	else if (!ft_strcmp(flags.length, "z"))
 		n = ft_lltoa(va_arg(deez_args, size_t));
-	else if (!ft_strcmp(flags.length, "l"))
+	else if (!ft_strcmp(flags.length, "l") || flags.type == 'D')
 		n = ft_lltoa(va_arg(deez_args, long));
 	else if (!ft_strcmp(flags.length, "h"))
 	{

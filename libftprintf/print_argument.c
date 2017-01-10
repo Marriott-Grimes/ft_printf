@@ -27,7 +27,7 @@ char	*print_argument(va_list deez_args, t_flag flags)
 		ans = print_argument_percent_c(deez_args, flags);
 	if (flags.type == 's')
 		ans = print_argument_s(deez_args, flags);
-	if (flags.type == 'd' || flags.type == 'i')
+	if (flags.type == 'd' || flags.type == 'i' || flags.type == 'D')
 		ans = print_argument_di(deez_args, flags);
 	if (flags.type == 'C' || flags.type == 'S' ||
 	(!ft_strcmp(flags.length, "l") && (flags.type == 'c' || flags.type == 's')))
