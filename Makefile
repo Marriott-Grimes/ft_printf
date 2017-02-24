@@ -14,7 +14,8 @@ SRCS = libftprintf/ft_putchar.c libftprintf/ft_strlen.c libftprintf/ft_putstr.c 
 	libftprintf/print_argument_s.c libftprintf/print_argument_di.c \
 	libftprintf/print_argument_cs.c libftprintf/parser_helper_funs.c \
 	libftprintf/ft_strjoin.c libftprintf/string_padding.c libftprintf/ft_strchr.c\
-	libftprintf/format_unsigned.c libftprintf/preparser.c libftprintf/ft_printf.c
+	libftprintf/format_unsigned.c libftprintf/preparser.c libftprintf/ft_printf.c \
+	libftprintf/widechar_funs.c libftprintf/copy_widestring.c
 
 OBJ = ft_putchar.o ft_strlen.o ft_putstr.o ft_strcat.o \
 	ft_strcmp.o ft_strcpy.o ft_strncpy.o ft_strdup.o \
@@ -23,7 +24,8 @@ OBJ = ft_putchar.o ft_strlen.o ft_putstr.o ft_strcat.o \
 	print_argument.o print_argument_p.o print_argument_xxou.o \
 	print_argument_c.o print_argument_s.o print_argument_di.o \
 	print_argument_cs.o parser_helper_funs.o ft_strchr.o \
-	ft_strjoin.o string_padding.o format_unsigned.o ft_printf.o
+	ft_strjoin.o string_padding.o format_unsigned.o ft_printf.o \
+	widechar_funs.o copy_widestring.o
 
 
 .PHONY: all comp clean fclean re

@@ -79,5 +79,11 @@ void			ft_putchar_xxou(char c, t_flag flags);
 int				get_varcount(char *str);
 char			**parse_strings(char *str, int varcount, va_list deez_args);
 int				ft_printf(const char *format, ...);
+int				wstrlen(wchar_t *wstr);
+int				wcar_bytes(wchar_t wc);
+int				wstr_bytes(wchar_t *wstr);
+char			*copy_wcar(wchar_t wc, char *str);
+char			*utf_convert(wchar_t *wstr);
+
 
 #endif
