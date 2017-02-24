@@ -46,5 +46,7 @@ char			*print_argument_percent_c(va_list deez_args, t_flag flags)
 	else
 		c = (unsigned char)va_arg(deez_args, unsigned int);
 	ans = format_car(c, flags);
+	if (c == 0)
+		g_nullcharoffset++;
 	return (ans);
 }

@@ -67,7 +67,8 @@ char		*format_unsigned(char *str, t_flag flags)
 	char	*prefix;
 
 	prefix = save_prefix(flags, str);
-	if (flags.precision == 0 && !ft_strcmp(str, "0"))
+	if (flags.precision == 0 && !ft_strcmp(str, "0") &&
+		(flags.type != 'o' || !flags.hash))
 		str = "";
 	if (flags.precision > ft_strlen(str))
 		str = pad_and_free(str, flags.precision, '0');

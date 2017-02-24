@@ -19,6 +19,8 @@
 ** *(_(")(")
 */
 
+int g_nullcharoffset;
+
 int	twenny_five_lines(char *str, va_list deez_args)
 {
 	int		ans;
@@ -26,6 +28,7 @@ int	twenny_five_lines(char *str, va_list deez_args)
 	int		varcount;
 	char	**arr;
 
+	g_nullcharoffset = 0;
 	ans = 0;
 	i = 0;
 	varcount = get_varcount(str);
@@ -42,33 +45,8 @@ int	twenny_five_lines(char *str, va_list deez_args)
 		ans += ft_strlen(arr[i]);
 		i++;
 	}
-	return (ans);
+	return (ans + g_nullcharoffset);
 }
-
-// int	twenny_five_lines(char *str, va_list deez_args)
-// {
-// 	int		ans;
-// 	t_flag	flags;
-
-// 	ans = 0;
-// 	while (*str)
-// 	{
-// 		if (*str != '%')
-// 		{
-// 			ft_putchar(*str);
-// 			ans++;
-// 		}
-// 		else
-// 		{
-// 			flags = parser(++str, flags);
-// 			ans += print_argument(deez_args, flags);
-// 			while (*str != flags.type)
-// 				str++;
-// 		}
-// 		str++;
-// 	}
-// 	return (ans);
-// }
 
 int	ft_printf(const char *format, ...)
 {

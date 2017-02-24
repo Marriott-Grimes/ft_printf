@@ -40,6 +40,8 @@ typedef	struct	s_signed_string
 	int			sign;
 }				t_signed_string;
 
+extern int		g_nullcharoffset;
+
 char			*ft_strnew(size_t size);
 char			*ft_strjoin(char const *s1, char const *s2);
 void			ft_putchar(char c);
