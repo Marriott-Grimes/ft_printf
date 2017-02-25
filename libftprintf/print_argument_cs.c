@@ -47,6 +47,7 @@ static t_string	format_wstr(wchar_t *wstr, t_flag flags)
 	if (!wstr)
 		return ((t_string){"(null)", 6, 0});
 	str.ptr = utf_convert(wstr);
+	str.bytes = ft_strlen(str.ptr);
 	if (flags.precision != -1)
 	{
 		temp = str.ptr;

@@ -49,7 +49,7 @@ t_string		print_argument_xxou(va_list deez_args, t_flag flags)
 	base = 0;
 	if (flags.type == 'x' || flags.type == 'X')
 		base = 16;
-	else if (flags.type == 'o')
+	else if (flags.type == 'o' || flags.type == 'O')
 		base = 8;
 	else if (flags.type == 'u' || flags.type == 'U')
 		base = 10;

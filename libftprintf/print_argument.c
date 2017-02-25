@@ -19,7 +19,7 @@ t_string		print_argument(va_list deez_args, t_flag flags)
 	if (flags.precision == (int)0xFFFFFBAD)
 		return ((t_string){NULL, 0, 0});
 	if (flags.type == 'x' || flags.type == 'X' || flags.type == 'o'
-	|| flags.type == 'u' || flags.type == 'U')
+	|| flags.type == 'O' || flags.type == 'u' || flags.type == 'U')
 		ans = print_argument_xxou(deez_args, flags);
 	if (flags.type == 'p')
 		ans = print_argument_p(deez_args, flags);
