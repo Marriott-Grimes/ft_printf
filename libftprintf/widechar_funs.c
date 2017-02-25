@@ -27,17 +27,14 @@ int		wcar_bytes(wchar_t wc)
 	int j;
 
 	j = 0;
-	while (wc)
-	{
-		if (wc <= 0xFF)
-			j++;
-		else if (wc <= 0x7FF)
-			j += 2;
-		else if (wc <= 0xFFFF)
-			j += 3;
-		else if (wc <= 0x10FFFF)
-			j += 4;
-	}
+	if (wc <= 0xFF)
+		j = 1;
+	else if (wc <= 0x7FF)
+		j = 2;
+	else if (wc <= 0xFFFF)
+		j = 3;
+	else if (wc <= 0x10FFFF)
+		j = 4;
 	return (j);
 }
 
@@ -58,9 +55,9 @@ int		wstr_bytes(wchar_t *wstr)
 
 char	*utf_convert(wchar_t *wstr)
 {
-	char *str;
-	char *ans;
-	int i;
+	char	*str;
+	char	*ans;
+	int		i;
 
 	ans = ft_strnew(wstr_bytes(wstr));
 	str = ans;

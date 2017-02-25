@@ -35,6 +35,7 @@ static t_string	format_wcar(wchar_t c, t_flag flags)
 			str.ptr[i++] = ' ';
 		copy_wcar(c, str.ptr + i);
 	}
+	str.bytes = len;
 	return (str);
 }
 
