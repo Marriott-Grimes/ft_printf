@@ -29,7 +29,7 @@ int		wcar_bytes(wchar_t wc)
 	j = 0;
 	while (wc)
 	{
-		if (wc <= 0x7F)
+		if (wc <= 0xFF)
 			j++;
 		else if (wc <= 0x7FF)
 			j += 2;

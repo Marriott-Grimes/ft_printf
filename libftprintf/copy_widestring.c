@@ -40,7 +40,7 @@ static char			*copy_wcar_part_two(wchar_t wc, char *str)
 
 char			*copy_wcar(wchar_t wc, char *str)
 {
-	if (wc <= 0x7F)
+	if (wc <= 0xFF)
 	{
 		str[0] = wc;
 		str++;
