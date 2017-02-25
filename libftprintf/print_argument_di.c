@@ -55,9 +55,9 @@ char			*format_signed(char *str, t_flag flags, int minus_sign)
 	return (str);
 }
 
-t_signed_string	convert_type_di(va_list deez_args, t_flag flags)
+t_string		convert_type_di(va_list deez_args, t_flag flags)
 {
-	t_signed_string	n;
+	t_string		n;
 	char			c;
 	short			s;
 
@@ -84,11 +84,12 @@ t_signed_string	convert_type_di(va_list deez_args, t_flag flags)
 	return (n);
 }
 
-char				*print_argument_di(va_list deez_args, t_flag flags)
+t_string		print_argument_di(va_list deez_args, t_flag flags)
 {
-	t_signed_string	num;
+	t_string	num;
 
 	num = convert_type_di(deez_args, flags);
-	num.str = format_signed(num.str, flags, num.sign);
-	return (num.str);
+	num.ptr = format_signed(num.ptr, flags, num.sign);
+	num.bytes = ft_strlen(num.ptr);
+	return (num);
 }

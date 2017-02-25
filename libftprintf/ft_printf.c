@@ -19,33 +19,30 @@
 ** *(_(")(")
 */
 
-int g_nullcharoffset;
-
 int	twenny_five_lines(char *str, va_list deez_args)
 {
-	int		ans;
-	int		i;
-	int		varcount;
-	char	**arr;
+	int			ans;
+	int			i;
+	int			varcount;
+	t_string	*arr;
 
-	g_nullcharoffset = 0;
 	ans = 0;
 	i = 0;
 	varcount = get_varcount(str);
 	arr = parse_strings(str, varcount, deez_args);
 	while (i < 2 * varcount + 1)
 	{
-		if (arr[i++] == NULL)
+		if (arr[i++].ptr == NULL)
 			return (-1);
 	}
 	i = 0;
 	while (i < 2 * varcount + 1)
 	{
-		ft_putstr(arr[i]);	
-		ans += ft_strlen(arr[i]);
+		write(1, arr[i].ptr, arr[i].bytes);	
+		ans += arr[i].bytes;
 		i++;
 	}
-	return (ans + g_nullcharoffset);
+	return (ans);
 }
 
 int	ft_printf(const char *format, ...)

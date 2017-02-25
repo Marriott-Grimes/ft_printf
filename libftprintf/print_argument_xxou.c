@@ -41,10 +41,10 @@ char			*type_convert_xxou(va_list deez_args, t_flag flags, int base)
 	return (ans);
 }
 
-char			*print_argument_xxou(va_list deez_args, t_flag flags)
+t_string		print_argument_xxou(va_list deez_args, t_flag flags)
 {
 	int			base;
-	char		*str;
+	t_string	str;
 
 	base = 0;
 	if (flags.type == 'x' || flags.type == 'X')
@@ -53,7 +53,8 @@ char			*print_argument_xxou(va_list deez_args, t_flag flags)
 		base = 8;
 	else if (flags.type == 'u' || flags.type == 'U')
 		base = 10;
-	str = type_convert_xxou(deez_args, flags, base);
-	str = format_unsigned(str, flags);
+	str.ptr = type_convert_xxou(deez_args, flags, base);
+	str.ptr = format_unsigned(str.ptr, flags);
+	str.bytes = ft_strlen(str.ptr);
 	return (str);
 }

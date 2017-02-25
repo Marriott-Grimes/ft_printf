@@ -12,26 +12,27 @@
 
 #include "libftprintf.h"
 
-char		*print_argument_s(va_list deez_args, t_flag flags)
+t_string		print_argument_s(va_list deez_args, t_flag flags)
 {
-	char	*str;
-	char	*temp;
+	t_string	str;
+	char		*temp;
 
-	str = va_arg(deez_args, char*);
-	if (!str)
-		return ("(null)");
+	str.ptr = va_arg(deez_args, char*);
+	if (!str.ptr)
+		return ((t_string){"(null)", 6, 0});
 	if (flags.precision != -1)
 	{
-		temp = str;
-		str = ft_strnew(flags.precision);
-		ft_strncpy(str, temp, flags.precision);
+		temp = str.ptr;
+		str.ptr = ft_strnew(flags.precision);
+		ft_strncpy(str.ptr, temp, flags.precision);
 	}
 	if (flags.width)
 	{
 		if (flags.minus)
-			str = pad_on_right(str, flags.width, ' ');
+			str.ptr = pad_on_right(str.ptr, flags.width, ' ');
 		else
-			str = pad_and_free(str, flags.width, ' ');
+			str.ptr = pad_and_free(str.ptr, flags.width, ' ');
 	}
+	str.bytes = ft_strlen(str.ptr);
 	return (str);
 }

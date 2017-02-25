@@ -12,41 +12,38 @@
 
 #include "libftprintf.h"
 
-char			*format_car(unsigned char c, t_flag flags)
+t_string	format_car(unsigned char c, t_flag flags)
 {
-	int i;
-	int len;
-	char *str;
+	int			i;
+	t_string	str;
 
 	i = 0;
-	len = ft_max(1, flags.width);
-	str = ft_strnew(len);
+	str.bytes = ft_max(1, flags.width);
+	str.ptr = ft_strnew(str.bytes);
 	if (flags.minus)
 	{
-		str[i++] = c;
-		while (i < len)
-			str[i++] = ' ';
+		str.ptr[i++] = c;
+		while (i < str.bytes)
+			str.ptr[i++] = ' ';
 	}
 	else
 	{
-		while (i < len - 1)
-			str[i++] = ' ';
-		str[i] = c;
+		while (i < str.bytes - 1)
+			str.ptr[i++] = ' ';
+		str.ptr[i] = c;
 	}
 	return (str);
 }
 
-char			*print_argument_percent_c(va_list deez_args, t_flag flags)
+t_string	print_argument_percent_c(va_list deez_args, t_flag flags)
 {
 	unsigned char	c;
-	char			*ans;
+	t_string		ans;
 
 	if (flags.type == '%')
 		c = '%';
 	else
 		c = (unsigned char)va_arg(deez_args, unsigned int);
 	ans = format_car(c, flags);
-	if (c == 0)
-		g_nullcharoffset++;
 	return (ans);
 }

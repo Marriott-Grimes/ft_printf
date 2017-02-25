@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-static char			*digit_copy_ll(char *temp, long long n)
+static char		*digit_copy_ll(char *temp, long long n)
 {
 	if (n > 0)
 	{
@@ -35,24 +35,25 @@ static char			*digit_copy_ll(char *temp, long long n)
 	return (temp);
 }
 
-t_signed_string		ft_lltoa(long long n)
+t_string		ft_lltoa(long long n)
 {
-	char			*temp;
-	t_signed_string	ans;
+	char		*temp;
+	t_string	ans;
 
 	ans.sign = 0;
 	if (n == 0)
 	{
-		ans.str = "0";
+		ans.ptr = "0";
 		return (ans);
 	}
 	if (n < 0)
 		ans.sign = 1;
 	temp = ft_strnew(22);
 	if (!temp)
-		ans.str = NULL;
-	ans.str = digit_copy_ll(temp + 22, n);
-	ans.str = ft_strdup(ans.str);
+		ans.ptr = NULL;
+	ans.ptr = digit_copy_ll(temp + 22, n);
+	ans.ptr = ft_strdup(ans.ptr);
 	free(temp);
+	ans.bytes = ft_strlen(ans.ptr);
 	return (ans);
 }

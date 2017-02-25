@@ -12,65 +12,66 @@
 
 #include "libftprintf.h"
 
-static char	*format_wcar(wchar_t c, t_flag flags)
+static t_string	format_wcar(wchar_t c, t_flag flags)
 {
-	char *str;
-	int len;
-	int bytes;
-	int i;
+	t_string	str;
+	int			len;
+	int			i;
 
 	i = 0;
-	bytes = wcar_bytes(c);
-	len = ft_max(bytes, flags.width - bytes + 1);
-	str = ft_strnew(len);
+	str.bytes = wcar_bytes(c);
+	len = ft_max(str.bytes, flags.width - str.bytes + 1);
+	str.ptr = ft_strnew(len);
 	if (flags.minus)
 	{
-		copy_wcar(c, str);
-		i += bytes;
-		while (i < len - bytes + 1)
-			str[i++] = ' ';
+		copy_wcar(c, str.ptr);
+		i += str.bytes;
+		while (i < len - str.bytes + 1)
+			str.ptr[i++] = ' ';
 	}
 	else
 	{
-		while (i < len - bytes)
-			str[i++] = ' ';
-		copy_wcar(c, str + i);
+		while (i < len - str.bytes)
+			str.ptr[i++] = ' ';
+		copy_wcar(c, str.ptr + i);
 	}
 	return (str);
 }
 
-static char	*format_wstr(wchar_t *wstr, t_flag flags)
+static t_string	format_wstr(wchar_t *wstr, t_flag flags)
 {
-	char *str;
-	char *temp;
+	t_string	str;
+	char		*temp;
 
-	str = utf_convert(wstr);
 	if (!wstr)
-		return ("(null)");
+		return ((t_string){"(null)", 6, 0});
+	str.ptr = utf_convert(wstr);
 	if (flags.precision != -1)
 	{
-		temp = str;
-		str = ft_strnew(flags.precision);
-		ft_strncpy(str, temp, flags.precision);
+		temp = str.ptr;
+		str.ptr = ft_strnew(flags.precision);
+		str.bytes = flags.precision;
+		ft_strncpy(str.ptr, temp, flags.precision);
 	}
 	if (flags.width)
 	{
+		str.bytes = flags.width;
 		if (flags.minus)
-			str = pad_on_right(str, flags.width, ' ');
+			str.ptr = pad_on_right(str.ptr, flags.width, ' ');
 		else
-			str = pad_and_free(str, flags.width, ' ');
+			str.ptr = pad_and_free(str.ptr, flags.width, ' ');
 	}
 	return (str);
 }
 
-char		*print_argument_cs(va_list deez_args, t_flag flags)
+t_string		print_argument_cs(va_list deez_args, t_flag flags)
 {
-	wchar_t c;
-	wchar_t *wstr;
-	char	*ans;
+	wchar_t		c;
+	wchar_t		*wstr;
+	t_string	ans;
 
 	if (MB_CUR_MAX == 1)
-		return (NULL);
+		return ((t_string){NULL, 0, 0});
 	if (flags.type == 'C' || flags.type == 'c')
 	{
 		c = va_arg(deez_args, wchar_t);

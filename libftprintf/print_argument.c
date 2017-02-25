@@ -12,12 +12,12 @@
 
 #include "libftprintf.h"
 
-char	*print_argument(va_list deez_args, t_flag flags)
+t_string		print_argument(va_list deez_args, t_flag flags)
 {
-	char	*ans;
+	t_string	ans;
 
 	if (flags.precision == (int)0xFFFFFBAD)
-		return (NULL);
+		return ((t_string){NULL, 0, 0});
 	if (flags.type == 'x' || flags.type == 'X' || flags.type == 'o'
 	|| flags.type == 'u' || flags.type == 'U')
 		ans = print_argument_xxou(deez_args, flags);

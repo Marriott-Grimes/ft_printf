@@ -12,10 +12,10 @@
 
 #include "libftprintf.h"
 
-char	*strdup_until_car(const char *str, char c)
+t_string	strdup_until_car(const char *str, char c)
 {
-	char	*answer;
-	int		len;
+	t_string	answer;
+	int			len;
 
 	len = 0;
 	if (str)
@@ -23,14 +23,15 @@ char	*strdup_until_car(const char *str, char c)
 		while (str[len] && str[len] != c)
 			len++;
 	}
-	answer = ft_strnew(len);
-	if (!answer)
-		return (NULL);
-	answer = ft_strncpy(answer, str, len);
+	answer.ptr = ft_strnew(len);
+	if (!answer.ptr)
+		return ((t_string){NULL, 0, 0});
+	answer.ptr = ft_strncpy(answer.ptr, str, len);
+	answer.bytes = len;
 	return (answer);
 }
 
-int		get_varcount(char *str)
+int			get_varcount(char *str)
 {
 	int varcount;
 	int i;
@@ -54,14 +55,14 @@ int		get_varcount(char *str)
 	return (varcount);
 }
 
-char	**parse_strings(char *str, int varcount, va_list deez_args)
+t_string	*parse_strings(char *str, int varcount, va_list deez_args)
 {
-	char	**ans;
-	int		i;
-	t_flag	flags;
+	t_string	*ans;
+	int			i;
+	t_flag		flags;
 
 	i = 0;
-	ans = (char **)malloc(sizeof(char *) * 2 * (varcount + 1));
+	ans = (t_string *)malloc(sizeof(t_string) * 2 * (varcount + 1));
 	while (i < 2 * varcount)
 	{
 		ans[i] = strdup_until_car(str, '%');
@@ -73,7 +74,8 @@ char	**parse_strings(char *str, int varcount, va_list deez_args)
 		str++;
 		i += 2;
 	}
-	ans[i] = ft_strdup(str);
-	ans[i + 1] = NULL;
+	ans[i].ptr = ft_strdup(str);
+	ans[i].bytes = ft_strlen(str);
+	ans[i + 1].ptr = NULL;
 	return(ans);
 }

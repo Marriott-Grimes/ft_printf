@@ -34,13 +34,12 @@ typedef	struct	s_flag
 	char		type;
 }				t_flag;
 
-typedef	struct	s_signed_string
+typedef	struct	s_string
 {
-	char		*str;
+	char		*ptr;
+	int			bytes;
 	int			sign;
-}				t_signed_string;
-
-extern int		g_nullcharoffset;
+}				t_string;
 
 char			*ft_strnew(size_t size);
 char			*ft_strjoin(char const *s1, char const *s2);
@@ -64,22 +63,21 @@ int				is_intial_flag(char *s);
 int				is_length_flag(char *s);
 t_flag			get_initial_flags(char *str, t_flag flags);
 char			*get_length_flag(char *str);
-t_signed_string	ft_lltoa(long long n);
+t_string		ft_lltoa(long long n);
 char			*ft_utoa_base(uintmax_t n, int base);
 char			*ft_llutoa_base(unsigned long long n, int base);
 char			*pad_and_free(char *str, int len, char c);
 char			*pad_on_right(char *str, int len, char c);
 char			*format_unsigned(char *tr, t_flag flags);
-char			*print_argument(va_list deez_args, t_flag flags);
-char			*print_argument_xxou(va_list deez_args, t_flag flags);
-char			*print_argument_p(va_list deez_args, t_flag flags);
-char			*print_argument_s(va_list deez_args, t_flag flags);
-char			*print_argument_percent_c(va_list deez_args, t_flag flags);
-char			*print_argument_di(va_list deez_args, t_flag flags);
-char			*print_argument_cs(va_list deez_args, t_flag flags);
-void			ft_putchar_xxou(char c, t_flag flags);
+t_string		print_argument(va_list deez_args, t_flag flags);
+t_string		print_argument_xxou(va_list deez_args, t_flag flags);
+t_string		print_argument_p(va_list deez_args, t_flag flags);
+t_string		print_argument_s(va_list deez_args, t_flag flags);
+t_string		print_argument_percent_c(va_list deez_args, t_flag flags);
+t_string		print_argument_di(va_list deez_args, t_flag flags);
+t_string		print_argument_cs(va_list deez_args, t_flag flags);
 int				get_varcount(char *str);
-char			**parse_strings(char *str, int varcount, va_list deez_args);
+t_string		*parse_strings(char *str, int varcount, va_list deez_args);
 int				ft_printf(const char *format, ...);
 int				wstrlen(wchar_t *wstr);
 int				wcar_bytes(wchar_t wc);
