@@ -42,20 +42,12 @@ static t_string	format_wcar(wchar_t c, t_flag flags)
 static t_string	format_wstr(wchar_t *wstr, t_flag flags)
 {
 	t_string	str;
-	char		*temp;
 
 	if (!wstr)
 		return ((t_string){"(null)", 6, 0});
-	str.ptr = utf_convert(wstr);
+	str.ptr = utf_convert(wstr, flags.precision);
 	str.bytes = ft_strlen(str.ptr);
-	if (flags.precision != -1)
-	{
-		temp = str.ptr;
-		str.ptr = ft_strnew(flags.precision);
-		str.bytes = flags.precision;
-		ft_strncpy(str.ptr, temp, flags.precision);
-	}
-	if (flags.width)
+	if (flags.width > str.bytes)
 	{
 		str.bytes = flags.width;
 		if (flags.minus)
@@ -79,10 +71,12 @@ t_string		print_argument_cs(va_list deez_args, t_flag flags)
 		c = va_arg(deez_args, wchar_t);
 		ans = format_wcar(c, flags);
 	}
-	else
+	else if (flags.type == 'S' || flags.type == 's')
 	{
 		wstr = va_arg(deez_args, wchar_t *);
 		ans = format_wstr(wstr, flags);
 	}
+	else
+		return ((t_string){NULL, 0, 0});
 	return (ans);
 }

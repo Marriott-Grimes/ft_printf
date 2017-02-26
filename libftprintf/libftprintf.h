@@ -83,6 +83,6 @@ int				wstrlen(wchar_t *wstr);
 int				wcar_bytes(wchar_t wc);
 int				wstr_bytes(wchar_t *wstr);
 char			*copy_wcar(wchar_t wc, char *str);
-char			*utf_convert(wchar_t *wstr);
+char			*utf_convert(wchar_t *wstr, int prec);
 
 #endif

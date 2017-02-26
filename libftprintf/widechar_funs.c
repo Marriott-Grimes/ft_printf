@@ -12,16 +12,6 @@
 
 #include "libftprintf.h"
 
-int		wstrlen(wchar_t *wstr)
-{
-	int i;
-
-	i = 0;
-	while (wstr[i])
-		i++;
-	return (i);
-}
-
 int		wcar_bytes(wchar_t wc)
 {
 	int j;
@@ -53,17 +43,22 @@ int		wstr_bytes(wchar_t *wstr)
 	return (j);
 }
 
-char	*utf_convert(wchar_t *wstr)
+char	*utf_convert(wchar_t *wstr, int prec)
 {
 	char	*str;
 	char	*ans;
 	int		i;
+	int		len;
 
-	ans = ft_strnew(wstr_bytes(wstr));
+	len = wstr_bytes(wstr);
+	if (prec != -1)
+		len = ft_min(len, prec);
+	ans = ft_strnew(len);
 	str = ans;
 	i = 0;
-	while (wstr[i])
+	while (wstr[i] && wcar_bytes(wstr[i]) <= len)
 	{
+		len -= wcar_bytes(wstr[i]);
 		str = copy_wcar(wstr[i], str);
 		i++;
 	}
