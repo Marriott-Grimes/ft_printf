@@ -64,8 +64,8 @@ t_string		print_argument_cs(va_list deez_args, t_flag flags)
 	wchar_t		*wstr;
 	t_string	ans;
 
-	if (MB_CUR_MAX == 1)
-		return ((t_string){NULL, 0, 0});
+	// if (MB_CUR_MAX == 1)
+	// 	return ((t_string){NULL, 0, 0});
 	if (flags.type == 'C' || flags.type == 'c')
 	{
 		c = va_arg(deez_args, wchar_t);
