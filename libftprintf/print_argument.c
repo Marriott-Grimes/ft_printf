@@ -15,7 +15,7 @@
 t_string		print_argument(va_list deez_args, t_flag flags)
 {
 	t_string	ans;
-	
+
 	ans = (t_string){NULL, 0, 0};
 	if (flags.precision == (int)0xFFFFFBAD)
 		return (ans);
