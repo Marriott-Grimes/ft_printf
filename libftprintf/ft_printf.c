@@ -38,7 +38,7 @@ int	twenny_five_lines(char *str, va_list deez_args)
 	i = 0;
 	while (i < 2 * varcount + 1)
 	{
-		write(1, arr[i].ptr, arr[i].bytes);	
+		write(1, arr[i].ptr, arr[i].bytes);
 		ans += arr[i].bytes;
 		i++;
 	}

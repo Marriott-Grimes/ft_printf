@@ -77,5 +77,5 @@ t_string	*parse_strings(char *str, int varcount, va_list deez_args)
 	ans[i].ptr = ft_strdup(str);
 	ans[i].bytes = ft_strlen(str);
 	ans[i + 1].ptr = NULL;
-	return(ans);
+	return (ans);
 }

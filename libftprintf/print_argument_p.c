@@ -14,8 +14,8 @@
 
 t_string		null_pointer_special_case(t_flag flags)
 {
-	t_string ans;
-	int i;
+	t_string	ans;
+	int			i;
 
 	i = 0;
 	if (flags.width > 3)
@@ -32,7 +32,6 @@ t_string		null_pointer_special_case(t_flag flags)
 		ans = (t_string){"0x0", 3, 0};
 	return (ans);
 }
-
 
 t_string		print_argument_p(va_list deez_args, t_flag flags)
 {

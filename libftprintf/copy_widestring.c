@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-static char			*copy_wcar_part_two(wchar_t wc, char *str)
+static char	*copy_wcar_part_two(wchar_t wc, char *str)
 {
 	if (wc <= 0x7FF)
 	{
@@ -38,7 +38,7 @@ static char			*copy_wcar_part_two(wchar_t wc, char *str)
 	return (str);
 }
 
-char			*copy_wcar(wchar_t wc, char *str)
+char		*copy_wcar(wchar_t wc, char *str)
 {
 	if (wc <= 0xFF)
 	{

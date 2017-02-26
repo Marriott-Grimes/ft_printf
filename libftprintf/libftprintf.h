@@ -85,5 +85,4 @@ int				wstr_bytes(wchar_t *wstr);
 char			*copy_wcar(wchar_t wc, char *str);
 char			*utf_convert(wchar_t *wstr);
 
-
 #endif

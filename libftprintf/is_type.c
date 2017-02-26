@@ -12,7 +12,7 @@
 
 #include "libftprintf.h"
 
-int	is_type(char *str)
+int		is_type(char *str)
 {
 	if (*str == 's' || *str == 'S' || *str == 'p' || *str == 'd' || *str == 'D'
 	|| *str == 'i' || *str == 'o' || *str == 'O' || *str == 'u' || *str == 'U'
