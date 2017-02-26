@@ -33,12 +33,14 @@ char		*save_prefix(t_flag flags, char *n)
 	len = 0;
 	if (!ft_strcmp(n, "0") || !flags.hash)
 		return ("");
-	if (flags.type == 'o' || flags.type == 'x' || flags.type == 'X')
+	if (flags.type == 'o' || flags.type == 'O' || flags.type == 'x' ||
+		flags.type == 'X')
 		len++;
 	if (flags.type == 'x' || flags.type == 'X')
 		len++;
 	ans = ft_strnew(len);
-	if (flags.type == 'o' || flags.type == 'x' || flags.type == 'X')
+	if (flags.type == 'o' || flags.type == 'O' || flags.type == 'x' ||
+		flags.type == 'X')
 		ans[0] = '0';
 	if (flags.type == 'x')
 		ans[1] = 'x';
@@ -68,7 +70,7 @@ char		*format_unsigned(char *str, t_flag flags)
 
 	prefix = save_prefix(flags, str);
 	if (flags.precision == 0 && !ft_strcmp(str, "0") &&
-		(flags.type != 'o' || !flags.hash))
+		((flags.type != 'o' && flags.type != 'O') || !flags.hash))
 		str = "";
 	if (flags.precision > ft_strlen(str))
 		str = pad_and_free(str, flags.precision, '0');
