@@ -17,7 +17,7 @@ int		wcar_bytes(wchar_t wc)
 	int j;
 
 	j = 0;
-	if (wc <= 0xFF)
+	if (wc <= 0x7F)
 		j = 1;
 	else if (wc <= 0x7FF)
 		j = 2;
